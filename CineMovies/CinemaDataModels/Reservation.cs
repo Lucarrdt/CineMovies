@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CineMovies.CinemaData;
 
@@ -8,9 +9,11 @@ public class Reservation
     public int Id { get; set; }
     
     [Required]
+    [ForeignKey("User")]
     public int UserId { get; set; }
     
     [Required]
+    [ForeignKey("Movie")]
     public int MovieId { get; set; }
     
     [Required]

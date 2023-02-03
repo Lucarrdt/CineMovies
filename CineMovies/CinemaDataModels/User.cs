@@ -25,6 +25,7 @@ public class User
     [MaxLength(100)]
     public string Password { get; set; }
     
+    [Required]
     public bool IsAdmin { get; set; }
     
     public List<Reservation> Reservations { get; set; }

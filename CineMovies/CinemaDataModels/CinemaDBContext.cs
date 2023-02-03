@@ -11,7 +11,8 @@ public class CinemaDBContext : DbContext
     public DbSet<Movie> Movies { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<Reservation> Reservations { get; set; }
-    
+    public DbSet<Cinema> Cinemas { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=CinemaDb;Trusted_Connection=True;");
