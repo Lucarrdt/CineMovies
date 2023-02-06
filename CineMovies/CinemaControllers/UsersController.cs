@@ -6,17 +6,16 @@ namespace CineMovies.CinemaControllers;
 
 public class UsersController : ControllerBase
 {
-  
     private readonly CinemaDBContext _context;
+    public UsersController(CinemaDBContext context) => _context = context;
 
     public bool UserExists(int id) => _context.Users.Any(e => e.Id == id);
+
     public bool IsAdmin(int id) => _context.Users.Any(e => e.Id == id && e.IsAdmin == true);
-    
-    public UsersController(CinemaDBContext context)
-    {
-        _context = context;
-    }
-    
+    /// <summary>
+    /// GetUsers() returns a list of all users in the database. & GetUser() returns a user with the given id.
+    /// </summary>
+    /// <returns></returns>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<User>>> GetUsers()
     {
