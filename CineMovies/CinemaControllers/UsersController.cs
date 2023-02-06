@@ -10,6 +10,7 @@ public class UsersController : ControllerBase
     private readonly CinemaDBContext _context;
 
     public bool UserExists(int id) => _context.Users.Any(e => e.Id == id);
+    public bool IsAdmin(int id) => _context.Users.Any(e => e.Id == id && e.IsAdmin == true);
     
     public UsersController(CinemaDBContext context)
     {
