@@ -64,4 +64,42 @@ public class UsersController : ControllerBase
         
         return NoContent();
     }
+
+    [HttpPost]
+    public async Task<ActionResult<User>> PostUser(User user)
+    {
+        _context.Users.Add(user);
+        await _context.SaveChangesAsync();
+        
+        return CreatedAtAction("GetUser", new { id = user.Id }, user);
+    }
+
+    [HttpPost ("login")]
+    public async Task<ActionResult<User>> LoginUser(User user)
+    {
+        var userToLogin = await _context.Users.FirstOrDefaultAsync(u => u.Email == user.Email && u.Password == user.Password);
+        
+        if (userToLogin == null)
+        {
+            return NotFound();
+        }
+        
+        return userToLogin;
+    }
+    
+    [HttpDelete("{id}")]
+    public async Task<ActionResult<User>> DeleteUser(int id)
+    {
+        var user = await _context.Users.FindAsync(id);
+        
+        if (user == null)
+        {
+            return NotFound();
+        }
+        
+        _context.Users.Remove(user);
+        await _context.SaveChangesAsync();
+        
+        return user;
+    }
 }
