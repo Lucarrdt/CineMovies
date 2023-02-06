@@ -1,4 +1,5 @@
 ﻿using CineMovies.CinemaData;
+using CineMovies.RepositoryPattern;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,7 +18,7 @@ public class UsersController : ControllerBase
     /// </summary>
     /// <returns></returns>
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+    public async Task<ActionResult<IEnumerable<User>>> GetAllUsers()
     {
         return await _context.Users.ToListAsync();
     }
@@ -36,7 +37,7 @@ public class UsersController : ControllerBase
     }
     
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutUser(int id, User user)
+    public async Task<IActionResult> UpdateUser(int id, User user)
     {
         if (id != user.Id)
         {
@@ -65,7 +66,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<User>> PostUser(User user)
+    public async Task<ActionResult<User>> AddUser(User user)
     {
         _context.Users.Add(user);
         await _context.SaveChangesAsync();

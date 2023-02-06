@@ -15,7 +15,7 @@ public class MoviesController : ControllerBase
     /// </summary>
     /// <returns></returns>
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Movie>>> GetMovies()
+    public async Task<ActionResult<IEnumerable<Movie>>> GetAllMovies()
     {
         return await _context.Movies.ToListAsync();
     }
